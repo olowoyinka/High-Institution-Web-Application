@@ -709,14 +709,14 @@ namespace Higher_Institution.Controllers
                 }
                 else
                 {
-                    if (StudentCourses.Contains(course.ApplicationIdCourseId))
-                    {
-                        CarryOverStudentCourse courseToRemove = ApplicationUser.CarryOverStudentCourse.SingleOrDefault(i => i.ApplicationIdCourseName ==
-                        course.ApplicationIdCourseId);
-                        _context.Remove(courseToRemove);
+                    //if (StudentCourses.Contains(course.ApplicationIdCourseId))
+                    //{
+                    //    CarryOverStudentCourse courseToRemove = ApplicationUser.CarryOverStudentCourse.SingleOrDefault(i => i.ApplicationIdCourseName ==
+                    //    course.ApplicationIdCourseId);
+                    //    _context.Remove(courseToRemove);
 
-                        //DeleteConfirmed(course.ApplicationIdCourseId);
-                    }
+                    //    DeleteConfirmed(course.ApplicationIdCourseId);
+                    //}
                 }
             }
 

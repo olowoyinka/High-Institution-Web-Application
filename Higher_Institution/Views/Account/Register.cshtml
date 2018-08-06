@@ -1,0 +1,170 @@
+﻿@model RegisterViewModel
+@using Higher_Institution.Models.Enum
+
+@{
+    ViewData["Title"] = "Student Register";
+}
+
+<hr />
+
+<h2>STUDENT REGISTRATION</h2>
+
+<form asp-controller="Account" asp-action="Register" enctype="multipart/form-data" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+    <hr />
+    <h4>New Student Register.</h4>
+    <hr />
+    
+    <div class="form-group">
+        <label asp-for="IdentityNumber" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="IdentityNumber" class="form-control" />
+            <span asp-validation-for="IdentityNumber" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="Surname" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Surname" class="form-control" />
+            <span asp-validation-for="Surname" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="FirstName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="FirstName" class="form-control" />
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="MiddleName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="MiddleName" class="form-control" />
+            <span asp-validation-for="MiddleName" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="Gender" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="Gender" asp-items="Html.GetEnumSelectList<GenderEnum>()"> </select>
+            <span asp-validation-for="Gender " class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="DateofBirth" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="DateofBirth" class="form-control" />
+            <span asp-validation-for="DateofBirth" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="DepartmentID" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="DepartmentID" class="form-control" asp-items="ViewBag.DepartmentID"><option value="" disabled selected> ** Select Your Department **</option></select>
+            <span asp-validation-for="DepartmentID" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="EntryYearID" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="EntryYearID" class="form-control" asp-items="ViewBag.EntryYearID"></select>
+            <span asp-validation-for="EntryYearID" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="SemesterID" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="SemesterID" class="form-control" asp-items="ViewBag.SemesterID"></select>
+            <span asp-validation-for="SemesterID" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="LevelID" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="LevelID" class="form-control" asp-items="ViewBag.LevelID"></select>
+            <span asp-validation-for="LevelID" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="State" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <select asp-for="State" asp-items="Html.GetEnumSelectList<StateEnum>()"> </select>
+            <span asp-validation-for="State" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="Address" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <textarea asp-for="Address" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="ParentName" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input asp-for="ParentName" class="form-control" />
+            <span asp-validation-for="ParentName" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="ParentAddress" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <textarea asp-for="ParentAddress" class="form-control" rows="3"></textarea>
+            <span asp-validation-for="ParentAddress" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <label asp-for="AvatarImage" class="col-md-2 control-label"></label>
+        <div class="col-md-10">
+            <input type="file" name="ProfilePictureFile" />
+            <span asp-validation-for="AvatarImage" class="text-danger"></span>
+        </div>
+    </div>
+    <hr />
+
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}

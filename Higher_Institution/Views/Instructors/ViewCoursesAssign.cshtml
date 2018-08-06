@@ -1,0 +1,76 @@
+﻿@model Higher_Institution.Models.InstructorUser
+
+
+
+@{
+    ViewData["Title"] = Model.FullName + " " + Model.Gender;
+}
+
+
+<hr />
+
+
+
+<div class="row col-lg-offset-1">
+    <div class="col-md-2"><img height="200" width="150" src="~/images/Instructor/@Model.Image" /></div>
+    <div class="col-md-10" align="center">
+        <h3>WELCOME @Model.FullName</h3>       
+        <hr />
+        <h3>Instructor Course Assigned</h3>
+        <hr />
+        <div class="col-md-6"><h4> Identity Number: @Model.IdentityNumber</h4> </div>    <div class="col-md-6"><h4> Department: @Model.Department.Name  </h4> </div>
+    </div>
+</div>
+
+
+<hr />
+
+
+
+<div class="row">
+    <div class="col-md-4">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Course Code</th>
+                    <th>Course Tittle</th>             
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.InstructorCourse)
+                {
+                    <tr>
+                        <td>@item.Course.CourseCode</td>
+                        <td>@item.Course.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="col-md-8">
+        
+            <form asp-action="ViewCoursesAssign">
+                <div class="form-group">
+                    
+                        <label class="col-md-4 control-label">Select Any Course:</label>
+                      
+                            <select asp-for="AssignCourse">
+                                @foreach (var item in Model.InstructorCourse)
+                                {
+                                    <option value="@item.Course.Name">@item.Course.Name</option>
+                                }
+                            </select>
+                        
+                   
+                    </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
+            </form>
+        
+    </div>
+</div>

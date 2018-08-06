@@ -1,0 +1,90 @@
+@model Higher_Institution.Models.InstructorViewModels.InstructorIndexData
+@using Higher_Institution.Models.Enum
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Course.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.CourseCode)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Course.CourseCode)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Level)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Course.Level)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Semester)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Course.Semester)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Course.Department)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Course.Department.Name)
+        </dd>
+        
+    </dl>
+
+  
+</div>
+
+
+<form asp-controller="Course" asp-action="UploadScore" method="post">
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Identity Number</th>
+                <th>FullName</th>
+                <th>Grade</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+
+           
+
+
+
+            @for (int i = 0; i < Model.Course.GeneratedStudentCourse.Count; i++)
+            {
+                <tr>
+                    <td>@Html.EditorFor(model => model.GeneratedStudentCourse[i].GeneratedStudentCourseID)</td>
+                   <td>@Model.GeneratedStudentCourse[i].ApplicationUser.IdentityNumber</td> 
+                   <td>@Model.GeneratedStudentCourse[i].ApplicationUser.FullName</td>
+                    <td>@Model.GeneratedStudentCourse[i].Course.Name</td>
+                   <td>@Html.EditorFor(model => model.GeneratedStudentCourse[i].Grade)</td>
+
+                </tr>
+            }
+
+
+
+
+        </tbody>
+    </table>
+    <div class="form-group">
+        <div class="col-lg-offset-2 col-md-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+    </div>
+    </form>

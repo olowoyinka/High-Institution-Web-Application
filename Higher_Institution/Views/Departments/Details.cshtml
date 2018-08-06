@@ -1,0 +1,56 @@
+@model Higher_Institution.Models.ViewModels.Department
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Department</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+    </dl>
+</div>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Identity Number</th>
+            <th>FullName</th>
+            <th></th>
+            
+        </tr>
+    </thead>
+
+    <tbody>
+
+
+
+    @foreach(var item in Model.Instructor)
+    {
+        <tr>
+            <td>@item.IdentityNumber</td>
+            <td>@item.FullName</td> 
+            <td><a asp-controller="Instructors" asp-action="InstructorRegisterCourse" asp-route-id="@item.Id"> InstructorRegisterCourse</a></td>
+            <td><form asp-controller="Instructors" asp-action="InstructorRegisterCourse" asp-route-id="@item.Id" method="get">
+    <p>
+        Title: <input type="text"  name="CoureReg" value="@item.Department.Name">
+        <input type="submit" value="Filter" />
+    </p>
+</form></td>
+        </tr>       
+    }
+
+    </tbody>
+</table>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.DepartmentID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

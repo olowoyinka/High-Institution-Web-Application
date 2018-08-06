@@ -1,0 +1,105 @@
+@model Higher_Institution.Models.ApplicationUser
+
+
+@{
+    ViewData["Title"] = Model.FullName + " "+Model.Gender;
+}
+
+
+
+<hr />
+
+
+
+<div class="row col-lg-offset-1">
+    <div class="col-md-3"><img height="200" width="150" src="~/images/student/@Model.Image"/></div>
+    <div class="col-md-7" align="center">
+        <h2>Student Course Registration</h2>
+        <hr />
+        <h3>WELCOME @Model.IdentityNumber</h3>
+    </div>
+    <div class="col-md-2"></div> 
+</div>
+
+<hr />
+
+<div class="row col-lg-offset-1">
+    <div class="col-md-12"><h4> Identity Number: @Model.IdentityNumber </h4> </div>
+    <div class="col-md-12"><h4> Department: @Model.Department.Name </h4> </div>
+    <div class="col-md-6"><h4> Surname: @Model.Surname </h4> </div><div class="col-md-6"><h4> Other Name: @Model.FirstName @Model.MiddleName </h4> </div>
+    <div class="col-md-6"><h4> Session: @Model.EntryYear.Name </h4> </div><div class="col-md-6"><h4> Semester: @Model.Semester.Name </h4> </div>
+</div>
+
+
+
+<form asp-action="RegisterCourse" >
+    <div class="form-horizontal">
+        
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>    
+        <input type="hidden" asp-for="Id" />
+        <div class="form-group">
+            <div class="col-md-offset-1 col-md-11">
+                <table class="table-bordered ">
+                    <tr >
+                        <th style="text-align:center">Check</th>
+                        <th style="text-align:center">Course Code</th>
+                        <th style="text-align:center">Course Tittle</th>
+                    </tr>
+
+
+
+
+                    <tr>
+                        @{
+                            int cnt = 0;
+                            List<Higher_Institution.Models.ViewModels.AssignedCourseData> courses =
+                ViewBag.Courses;
+
+                            foreach (var course in courses)
+                            {
+                                if (cnt++ % 1 == 0)
+                                {
+                                    @:</tr><tr>
+						        }
+                                @:<td style="text-align:center; width:300px">
+                                    <input type="checkbox"
+                                           name="selectedCourses"
+                                           value="@course.CourseID"
+                                           @(Html.Raw(course.Assigned ? "checked=\"checked\"" : "")) />
+                                @:</td>
+
+
+                                @:<td style="text-align:center; width:300px">
+                                    @course.CourseCode
+                                @:</td>
+
+                                @:<td style="text-align:center; width:300px">
+                                    @course.Names
+                                @:</td>
+
+                                @:<td style="text-align:center; width:300px" hidden>
+                                    @course.FullName
+                                @:</td>
+					        }
+                            @:</tr>
+                        }
+                    </table>
+                </div>
+            </div>
+
+             <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,30 @@
+﻿@model Higher_Institution.Models.ApplicationUser
+
+<p>
+    Create New
+</p>
+
+
+
+<form asp-action="RegisterCourse" method="get">
+    <p>
+        Title: <input type="text" hidden name="CoureReg" value="@ViewBag.ree">
+        <input type="submit" value="Filter" />
+    </p>
+</form>
+
+
+
+<form asp-action="CoursePrint" method="post">
+    
+        <input type="submit" value="Filter" />
+    
+</form>
+
+
+
+
+
+
+
+@ViewBag.ree

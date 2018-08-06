@@ -1,0 +1,75 @@
+﻿@model Higher_Institution.Models.InstructorViewModels.InstructorIndexData
+@using Higher_Institution.Models.Enum
+
+
+@{
+    ViewData["Title"] = Model.InstructorUser.FullName + " " + Model.InstructorUser.Gender;
+}
+
+
+<hr />
+
+
+
+<div class="row col-lg-offset-1">
+    <div class="col-md-2"><img height="200" width="150" src="~/images/Instructor/@Model.InstructorUser.Image" /></div>
+    <div class="col-md-10" align="center">
+        <h3>WELCOME @Model.InstructorUser.FullName</h3>
+        <hr />
+        <h1>@Model.InstructorUser.AssignCourse</h1>
+        <hr/>
+        <div class="col-md-6"><h4> Identity Number: @Model.InstructorUser.IdentityNumber</h4> </div>    <div class="col-md-6"><h4> Department: @Model.InstructorUser.Department.Name  </h4> </div>
+    </div>
+</div>
+
+<hr />
+
+
+
+
+
+
+
+
+    <form asp-action="UploadScore" method="post">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Matric Number</th>
+                    <th>Student FullName</th>
+                    <th>Current Grade</th>
+                    <th>Upgrade/Assign Grade</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+
+
+
+               
+                @for (int i = 0; i < Model.GeneratedStudentCourse.Count; i++)
+                {
+                    
+                    <tr>
+                        <td class="hidden">@Html.EditorFor(model => model.GeneratedStudentCourse[i].GeneratedStudentCourseID)</td>
+                        <td class="hidden">@Model.GeneratedStudentCourse[i].Course.Name</td>                  
+                        <td>@Model.GeneratedStudentCourse[i].ApplicationUser.IdentityNumber</td>
+                        <td>@Model.GeneratedStudentCourse[i].ApplicationUser.FullName</td>
+                        <td>@Model.GeneratedStudentCourse[i].Grade</td>
+                        <td>@Html.EditorFor(model => model.GeneratedStudentCourse[i].Grade)</td>
+
+                    </tr>
+
+                }
+
+                
+            </tbody>
+
+        </table>
+        <div class="form-group">
+            <div class="col-lg-offset-2 col-md-10">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </div>
+    </form>

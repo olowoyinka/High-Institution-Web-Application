@@ -709,14 +709,49 @@ namespace Higher_Institution.Controllers
                 }
                 else
                 {
-                    //if (StudentCourses.Contains(course.ApplicationIdCourseId))
-                    //{
-                    //    CarryOverStudentCourse courseToRemove = ApplicationUser.CarryOverStudentCourse.SingleOrDefault(i => i.ApplicationIdCourseName ==
-                    //    course.ApplicationIdCourseId);
-                    //    _context.Remove(courseToRemove);
+                    if (StudentCourses.Contains(course.ApplicationIdCourseId))
+                    {
 
-                    //    DeleteConfirmed(course.ApplicationIdCourseId);
-                    //}
+                        CarryOverStudentCourse courseToRemove = _context.CarryOverStudentCourse
+                            .Include(a => a.Semester)
+                            .Include(a => a.EntryYear)
+                            .Include(a => a.ApplicationUser)
+                            .Include(a => a.Course)
+                            .Where(a => a.ApplicationIdCourseName.Equals(course.ApplicationIdCourseId)).FirstOrDefault();
+                        _context.Remove(courseToRemove);
+
+                        //DeleteConfirmed(course.ApplicationIdCourseId);
+
+
+                        //var c = _context.CarryOverStudentCourse
+                        //    .Include(a => a.Semester)
+                        //    .Include(a => a.EntryYear)
+                        //    .Include(a => a.ApplicationUser)
+                        //    .Include(a => a.Course)
+                        //    .Where(a => a.ApplicationIdCourseName.Equals(course.ApplicationIdCourseId)).FirstOrDefault();
+
+                        //if (c != null)
+                        //{
+
+                    
+
+
+                        //    c.Grade = course.Grade;
+                        //}
+
+
+                        // _context.SaveChanges();
+                    }
+
+
+
+
+                    //CarryOverStudentCourse courseToRemove = ApplicationUser.CarryOverStudentCourse.SingleOrDefault(i => i.ApplicationIdCourseName ==
+                    //    course.ApplicationIdCourseId);
+                    //_context.Remove(courseToRemove);
+
+                    //DeleteConfirmed(course.ApplicationIdCourseId);
+
                 }
             }
 
